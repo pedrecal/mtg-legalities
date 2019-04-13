@@ -15,6 +15,7 @@ module.exports = {
     "node": true,
   },
   "rules": {
+    "no-plusplus": 'off',
     "no-debugger": 0,
     "no-alert": 0,
     "no-await-in-loop": 0,
@@ -35,12 +36,10 @@ module.exports = {
         "argsIgnorePattern": "res|next|^err"
       }
     ],
-    "prefer-const": [
-      "error",
-      {
-        "destructuring": "all",
-      }
-    ],
+    "prefer-const": ["error", {
+      "destructuring": "all",
+      "ignoreReadBeforeAssign": false
+    }],
     "arrow-body-style": [
       2,
       "as-needed"
@@ -78,7 +77,8 @@ module.exports = {
           "done",
           "next",
           "err",
-          "error"
+          "error",
+          "file"
         ]
       }
     ],
