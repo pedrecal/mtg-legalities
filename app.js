@@ -67,7 +67,7 @@ const isFormatLegal = async (file, header, format, filter) => {
     const cardPauperLegal = [];
     for (let i = 0; i < cards.length; i++) {
       const result = await Scry.Cards.byName(cards[i], true);
-      if (result.legalities.pauper === 'legal') {
+      if (result.legalities[format] === 'legal') {
         cardPauperLegal.push({
           cardName: result.name,
           isPauperLegal: result.legalities.pauper,
@@ -109,7 +109,7 @@ const run = async () => {
   const { FILENAME, HEADER, FORMAT, FILTER } = answers;
   // run the legalities validator
   const file = fs.createReadStream(FILENAME);
-  isFormatLegal(file, 'Name', 'Pauper', 'both');
+  isFormatLegal(file, 'Name', FORMAT, 'both');
   // show success message
 };
 
