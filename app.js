@@ -11,7 +11,7 @@ const init = () => {
   console.log(
     chalk.green(
       figlet.textSync('Is My Card Legal?', {
-        font: 'big',
+        font: 'Big',
         horizontalLayout: 'default',
         verticalLayout: 'default',
       })
