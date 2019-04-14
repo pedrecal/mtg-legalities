@@ -27,6 +27,12 @@ const askQuestions = () => {
       type: 'input',
       message: 'What is the path with the name of the file? i.e. ../cards.csv',
       default: 'cards.csv',
+      validate: value => {
+        if (value.length) {
+          return true;
+        }
+        return 'Please provide the file location!';
+      },
     },
     {
       type: 'input',
