@@ -1,4 +1,5 @@
 *.csv
+mtg-legalities-*
 # Logs
 logs
 *.log
