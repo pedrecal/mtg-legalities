@@ -69,7 +69,13 @@ const isFormatLegal = async (file, header, format, filter) => {
     const cardPauperLegal = [];
     for (let i = 0; i < cards.length; i++) {
       const result = await Scry.Cards.byName(cards[i], true);
-      if (result.legalities[format] === filter) {
+      if (filter === 'both') {
+        cardPauperLegal.push({
+          cardName: result.name,
+          isLegal: result.legalities[format],
+          colors: result.colors,
+        });
+      } else if (result.legalities[format] === filter) {
         cardPauperLegal.push({
           cardName: result.name,
           isLegal: result.legalities[format],
