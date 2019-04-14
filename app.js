@@ -86,19 +86,16 @@ const isFormatLegal = async (file, header, format, filter) => {
     return cardPauperLegal;
   };
   const getCardsUniqName = async data => {
-    const namesArray = [];
     let uniq = [];
-    for (let i = 1; i < data.length; i++) {
-      namesArray.push(data[i][0][0]);
-    }
-    uniq = [...new Set(namesArray)];
+    uniq = [...new Set(data)];
     console.log(await isPauperLegal(uniq));
   };
   const readCSV = file => {
     const cardsNames = [];
     Papa.parse(file, {
+      header: true,
       step: result => {
-        cardsNames.push(result.data);
+        cardsNames.push(result.data[0][header]);
       },
       complete: results => {
         const cards = getCardsUniqName(cardsNames);
@@ -117,8 +114,7 @@ const run = async () => {
   const { FILENAME, HEADER, FORMAT, FILTER } = answers;
   // run the legalities validator
   const file = fs.createReadStream(FILENAME);
-  isFormatLegal(file, 'Name', FORMAT, FILTER);
-  // show success message
+  isFormatLegal(file, HEADER, FORMAT, FILTER);
 };
 
 run();
