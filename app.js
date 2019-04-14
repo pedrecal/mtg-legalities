@@ -26,6 +26,7 @@ const askQuestions = () => {
       name: 'FILENAME',
       type: 'input',
       message: 'What is the path with the name of the file? i.e. ../cards.csv',
+      default: 'cards.csv',
     },
     {
       type: 'input',
@@ -50,13 +51,14 @@ const askQuestions = () => {
         'duel',
         'oldschool',
       ],
+      default: 'pauper',
     },
     {
       type: 'list',
       name: 'FILTER',
       message: 'Do you want to show only legals, not legals or both?',
-      choices: ['legal', 'not_legal', 'both'],
       default: 'both',
+      choices: ['legal', 'not_legal', 'both'],
     },
   ];
   return inquirer.prompt(questions);
@@ -67,10 +69,10 @@ const isFormatLegal = async (file, header, format, filter) => {
     const cardPauperLegal = [];
     for (let i = 0; i < cards.length; i++) {
       const result = await Scry.Cards.byName(cards[i], true);
-      if (result.legalities[format] === 'legal') {
+      if (result.legalities[format] === filter) {
         cardPauperLegal.push({
           cardName: result.name,
-          isPauperLegal: result.legalities.pauper,
+          isLegal: result.legalities[format],
           colors: result.colors,
         });
       }
@@ -109,7 +111,7 @@ const run = async () => {
   const { FILENAME, HEADER, FORMAT, FILTER } = answers;
   // run the legalities validator
   const file = fs.createReadStream(FILENAME);
-  isFormatLegal(file, 'Name', FORMAT, 'both');
+  isFormatLegal(file, 'Name', FORMAT, FILTER);
   // show success message
 };
 
