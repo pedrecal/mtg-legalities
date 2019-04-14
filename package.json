@@ -42,5 +42,8 @@
   },
   "bin": {
     "legal-mtg": "./app.js"
+  },
+  "pkg": {
+    "assets": "node_modules/figlet/fonts/*"
   }
 }
