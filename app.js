@@ -72,14 +72,17 @@ const isFormatLegal = async (file, header, format, filter) => {
       if (filter === 'both') {
         cardPauperLegal.push({
           cardName: result.name,
-          isLegal: result.legalities[format],
+          [`is${format.charAt(0).toUpperCase() + format.slice(1)}legal`]: result
+            .legalities[format],
           colors: result.colors,
+          image: result.image_uris.normal,
         });
       } else if (result.legalities[format] === filter) {
         cardPauperLegal.push({
           cardName: result.name,
           isLegal: result.legalities[format],
           colors: result.colors,
+          image: result.image_uris.normal,
         });
       }
     }
