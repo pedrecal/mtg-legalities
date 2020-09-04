@@ -36,7 +36,7 @@
     "chalk": "^2.4.2",
     "figlet": "^1.2.1",
     "inquirer": "^6.2.2",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.2.0",
     "scryfall-sdk": "^1.5.0",
     "shelljs": "^0.8.3"
   },
