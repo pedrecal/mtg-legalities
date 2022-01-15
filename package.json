@@ -38,7 +38,7 @@
     "inquirer": "^6.2.2",
     "papaparse": "^4.6.3",
     "scryfall-sdk": "^1.5.0",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.5"
   },
   "bin": {
     "legal-mtg": "./app.js"
